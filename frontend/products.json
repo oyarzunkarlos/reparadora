@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "nombre": "Plantilla Ortopédica Premium",
+    "categoria": "Ortopedia",
+    "precio": 29990,
+    "descripcion": "Plantilla de gel y espuma de memoria para soporte total del arco. Ideal para personas con dolor en el pie o problemas de alineación.",
+    "stock": 25,
+    "imagenes": [
+      "https://via.placeholder.com/400x300?text=Plantilla+Premium+1",
+      "https://via.placeholder.com/400x300?text=Plantilla+Premium+2"
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Rodillera Deportiva Elástica",
+    "categoria": "Ortopedia",
+    "precio": 18990,
+    "descripcion": "Rodillera de neopreno con refuerzos laterales para estabilidad durante actividades deportivas y rehabilitación.",
+    "stock": 18,
+    "imagenes": [
+      "https://via.placeholder.com/400x300?text=Rodillera+Deportiva+1",
+      "https://via.placeholder.com/400x300?text=Rodillera+Deportiva+2"
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "Faja Lumbar de Soporte",
+    "categoria": "Ortopedia",
+    "precio": 34990,
+    "descripcion": "Faja de compresión con refuerzos rígidos para el tratamiento del dolor lumbar y la prevención de lesiones.",
+    "stock": 12,
+    "imagenes": [
+      "https://via.placeholder.com/400x300?text=Faja+Lumbar+1",
+      "https://via.placeholder.com/400x300?text=Faja+Lumbar+2"
+    ]
+  },
+  {
+    "id": 4,
+    "nombre": "Horma para Zapatos",
+    "categoria": "Calzado",
+    "precio": 8990,
+    "descripcion": "Horma de madera de abedul para mantener la forma de tus zapatos formales mientras no los usas.",
+    "stock": 42,
+    "imagenes": [
+      "https://via.placeholder.com/400x300?text=Horma+Zapatos+1",
+      "https://via.placeholder.com/400x300?text=Horma+Zapatos+2"
+    ]
+  },
+  {
+    "id": 5,
+    "nombre": "Protector de Tacón para Mujer",
+    "categoria": "Calzado",
+    "precio": 5990,
+    "descripcion": "Protector de silicona suave y resistente para prevenir el desgaste prematuro de los tacones de tus zapatos.",
+    "stock": 67,
+    "imagenes": [
+      "https://via.placeholder.com/400x300?text=Protector+Tacón+1",
+      "https://via.placeholder.com/400x300?text=Protector+Tacón+2"
+    ]
+  },
+  {
+    "id": 6,
+    "nombre": "Cremallera Invisible para Zapatillas",
+    "categoria": "Calzado",
+    "precio": 12990,
+    "descripcion": "Cremallera de alta calidad, invisible y ultra-resistente para la reparación y personalización de zapatillas deportivas.",
+    "stock": 33,
+    "imagenes": [
+      "https://via.placeholder.com/400x300?text=Cremallera+Zapatillas+1",
+      "https://via.placeholder.com/400x300?text=Cremallera+Zapatillas+2"
+    ]
+  }
+]

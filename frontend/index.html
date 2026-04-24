@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reparadora y Ortopedia Alemana | Tienda Online</title>
+    <meta name="description" content="Compra artículos para calzado y productos ortopédicos de alta calidad en línea. Envíos a todo Chile.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Reparadora y Ortopedia Alemana</h1>
+                <p class="tagline">Calidad Alemana para tu Bienestar</p>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home" class="active">Inicio</a></li>
+                    <li><a href="#calzado">Calzado</a></li>
+                    <li><a href="#ortopedia">Ortopedia</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="cartToggle" class="btn-cart">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Bienvenido a la Tienda Online</h2>
+                <p>Artículos de calzado y soluciones ortopédicas de máxima calidad, diseñadas para tu comodidad y bienestar.</p>
+                <div class="hero-buttons">
+                    <a href="#calzado" class="btn-primary">Ver Calzado</a>
+                    <a href="#ortopedia" class="btn-secondary">Ver Ortopedia</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Search -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar productos...">
+                <button id="searchButton" class="btn-search">🔍</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="calzado" class="category-section">
+        <div class="container">
+            <h2>Artículos para Calzado</h2>
+            <div id="calzadoProducts" class="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+                <div class="loading-spinner">Cargando productos...</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ortopedia" class="category-section">
+        <div class="container">
+            <h2>Productos Ortopédicos</h2>
+            <div id="ortopediaProducts" class="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+                <div class="loading-spinner">Cargando productos...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button id="cartClose" class="btn-close">✕</button>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <p class="empty-cart">Tu carrito está vacío.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total:</strong> <span id="cartTotal">$0</span>
+            </div>
+            <button id="checkoutButton" class="btn-checkout" disabled>Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <div class="contact-info">
+                <div class="contact-details">
+                    <h3>Información de Contacto</h3>
+                    <p>📞 Teléfono: +56 9 1234 5678</p>
+                    <p>📍 Dirección: Calle Falsa 123, Santiago</p>
+                    <p>💬 WhatsApp: +56 9 1234 5678</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Envíanos un Mensaje</h3>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Nombre completo" required>
+                        <input type="email" placeholder="Email" required>
+                        <textarea placeholder="Mensaje" rows="4" required></textarea>
+                        <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Reparadora y Ortopedia Alemana. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Aviso legal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
