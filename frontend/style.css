@@ -1,635 +1,983 @@
-/* ====================
-   REPARADORA Y ORTOPEDIA ALEMANA
-   Estilos CSS - Modernidad Alemana
-   ==================== */
+/* 
+  ╔═══════════════════════════════════════════════════════════════════╗
+  ║  LECCIÓN CSS - ESTILOS Y DISEÑO                                   ║
+  ║  Proyecto: Reparadora y Ortopedia Alemana                         ║
+  ╚═══════════════════════════════════════════════════════════════════╝
+  
+  CSS (Cascading Style Sheets) define CÓMO SE VE el HTML.
+  Si HTML es el esqueleto, CSS es la ropa y el maquillaje.
+  
+  ANALOGÍA CON C#:
+  HTML es la definición de clase
+  CSS es como establecer propiedades visuales:
+      button1.BackColor = Color.Red;
+      button1.Font = new Font("Arial", 12);
+      button1.Width = 150;
+  
+  SINTAXIS CSS:
+  selector {
+      propiedad: valor;
+      propiedad: valor;
+  }
+  
+  Ejemplo:
+  button {                    ← Selector (afecta a TODOS los <button>)
+      background-color: red;  ← Propiedad: color de fondo
+      color: white;           ← Propiedad: color de texto
+  }
+*/
 
+/* ==================== VARIABLES CSS ==================== */
+/* 
+  :root es el elemento RAÍZ del documento (como <html>)
+  Las variables definidas aquí se pueden usar en TODO el CSS
+  
+  SINTAXIS: --nombre-variable: valor;
+  USO: var(--nombre-variable)
+  
+  ANALOGÍA CON C#:
+  Es como tener constantes o campos estáticos:
+      public static readonly Color Primary = Color.Red;
+  
+  VENTAJAS:
+  - Cambias un valor aquí y se actualiza en TODA la página
+  - Código más mantenible
+  - Fácil crear temas (modo oscuro, etc.)
+*/
 :root {
-  --color-primary: #E30A17; /* Rojo vibrante */
-  --color-secondary: #FFCE00; /* Dorado/Amarillo */
-  --color-dark: #000000; /* Negro profesional */
-  --color-light: #F9F9F9; /* Fondo limpio */
-  --color-gray: #666666; /* Texto secundario */
-  --color-border: #E0E0E0; /* Bordes sutiles */
-  --font-main: 'Rubik', sans-serif;
-  --font-body: 'Open Sans', sans-serif;
+    /* Colores de la marca (bandera alemana: negro, rojo, dorado) */
+    --color-primary: #E30A17;    /* Rojo vibrante - acción principal */
+    --color-secondary: #FFCE00;  /* Dorado/Amarillo - acentos */
+    --color-dark: #000000;       /* Negro - texto, footer */
+    --color-light: #F9F9F9;      /* Gris muy claro - fondo */
+    --color-gray: #666666;       /* Gris medio - texto secundario */
+    --color-border: #E0E0E0;     /* Gris claro - bordes */
+    
+    /* Fuentes de Google Fonts */
+    --font-main: 'Rubik', sans-serif;      /* Títulos (más gruesa) */
+    --font-body: 'Open Sans', sans-serif;  /* Texto normal (más legible) */
 }
 
+/* ==================== RESET BÁSICO ==================== */
+/* 
+  * es el selector "UNIVERSAL" - afecta a TODOS los elementos
+  
+  ¿Por qué hacer reset?
+  Cada navegador tiene estilos por defecto DIFERENTES
+  (Chrome pone márgenes distintos a Firefox, etc.)
+  
+  Esto NORMALIZA todos los navegadores para que se vean igual
+*/
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;           /* Elimina márgenes externos por defecto */
+    padding: 0;          /* Elimina relleno interno por defecto */
+    
+    /* 
+      box-sizing: border-box es CRUCIAL para diseño web
+    
+      ¿Qué hace?
+      Sin esto: si un elemento tiene width: 200px y padding: 20px,
+                el ancho TOTAL es 240px (200 + 20 izquierda + 20 derecha)
+      
+      Con border-box: el padding se incluye DENTRO de los 200px
+                      el ancho total SIGUE siendo 200px
+    
+      ANALOGÍA CON C#:
+      Es como decir "el tamaño incluye el borde" vs "el tamaño es solo el contenido"
+    */
+    box-sizing: border-box;
 }
 
+/* ==================== CUERPO DE LA PÁGINA ==================== */
+/* 
+  body afecta a TODO el contenido visible
+  
+  Estas son propiedades que se HEREDAN a los elementos hijos
+  (a menos que se sobrescriban específicamente)
+*/
 body {
-  font-family: var(--font-body);
-  line-height: 1.6;
-  color: var(--color-dark);
-  background-color: var(--color-light);
+    font-family: var(--font-body);  /* Fuente del texto */
+    line-height: 1.6;               /* Espacio entre líneas (1.6 = 160% del tamaño de fuente) */
+    color: var(--color-dark);       /* Color de texto por defecto */
+    background-color: var(--color-light); /* Color de fondo */
 }
 
+/* ==================== CONTENEDOR PRINCIPAL ==================== */
+/* 
+  .container es una clase para CENTRAR contenido y limitar ancho máximo
+  
+  SELECTOR DE CLASE:
+  .nombre = selecciona todos los elementos con class="nombre"
+  
+  ANALOGÍA CON C#:
+  Es como filtrar controles por Tag o por clase
+*/
 .container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+    width: 100%;              /* Ocupa todo el ancho disponible */
+    max-width: 1200px;        /* Pero nunca más de 1200px (en pantallas grandes) */
+    margin: 0 auto;           /* Centrado horizontal: 0 arriba/abajo, auto izquierda/derecha */
+    padding: 0 20px;          /* Relleno izquierdo/derecho de 20px */
 }
 
-/* Header */
+/* ==================== HEADER ==================== */
+/* 
+  .header con punto = selector de CLASE
+  Afecta a: <header class="header">
+  
+  ¿Por qué no usar solo "header"?
+  Podrías tener múltiples headers en la página
+  class te permite diferenciarlos
+*/
 .header {
-  background-color: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+    background-color: white;           /* Fondo blanco */
+    
+    /* 
+      box-shadow crea una SOMBRA debajo del header
+      Sintaxis: offset-x offset-y blur-radius color
+      
+      0 2px 10px rgba(0,0,0,0.1) =
+      - 0: sin desplazamiento horizontal
+      - 2px: 2px hacia abajo
+      - 10px: difuminado de 10px
+      - rgba(0,0,0,0.1): negro con 10% opacidad
+    */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
+    /* 
+      position: sticky hace que el header se QUEDE FIJO al hacer scroll
+      top: 0 = se pega al borde superior
+      
+      DIFERENCIA con position: fixed:
+      - sticky: se comporta como normal hasta que haces scroll, luego se pega
+      - fixed: siempre está fijo, no se mueve con el scroll
+    */
+    position: sticky;
+    top: 0;
+    
+    /* 
+      z-index controla la PROFUNDIDAD (qué elemento está encima de cuál)
+      1000 = valor alto para estar encima de la mayoría de elementos
+      
+      Solo funciona con position: relative, absolute, fixed, o sticky
+    */
+    z-index: 1000;
 }
 
+/* Header container - usa Flexbox para alinear elementos */
 .header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
+    /* 
+      display: flex activa FLEXBOX
+      Flexbox es un sistema de diseño 1D (una dimensión a la vez)
+      
+      ANALOGÍA CON C#:
+      Es como un Panel con AutoSize + alineación automática
+    */
+    display: flex;
+    
+    /* 
+      justify-content: space-between distribuye elementos:
+      [logo]                    [menú]                    [carrito]
+      (espacio igual entre ellos)
+    */
+    justify-content: space-between;
+    
+    /* align-items: center centra verticalmente */
+    align-items: center;
+    
+    padding: 15px 20px;
 }
 
+/* ==================== LOGO ==================== */
 .logo h1 {
-  font-family: var(--font-main);
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: var(--color-dark);
-  margin: 0;
+    font-family: var(--font-main);  /* Fuente más gruesa para títulos */
+    font-weight: 700;               /* 700 = bold (hay 100-900) */
+    font-size: 1.8rem;              /* 1.8rem = 1.8 × tamaño base (usualmente 16px = 28.8px) */
+    color: var(--color-dark);
+    margin: 0;
 }
 
 .tagline {
-  font-size: 1rem;
-  color: var(--color-gray);
-  margin-top: 5px;
+    font-size: 1rem;                /* Tamaño base (16px) */
+    color: var(--color-gray);       /* Gris para texto secundario */
+    margin-top: 5px;                /* Pequeño espacio arriba */
 }
 
+/* ==================== NAVEGACIÓN ==================== */
+/* Menú de navegación - lista horizontal */
 .nav ul {
-  display: flex;
-  list-style: none;
+    display: flex;                  /* Hace que los <li> se pongan en fila */
+    list-style: none;               /* Quita las viñetas (puntos) de la lista */
 }
 
 .nav li {
-  margin-left: 30px;
+    margin-left: 30px;              /* Espacio entre items del menú */
 }
 
+/* Enlaces del menú */
 .nav a {
-  text-decoration: none;
-  color: var(--color-dark);
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: color 0.3s;
-  position: relative;
+    text-decoration: none;          /* Quita el subrayado de los enlaces */
+    color: var(--color-dark);
+    font-weight: 600;               /* Semi-bold */
+    font-size: 1.1rem;
+    
+    /* 
+      transition crea ANIMACIÓN SUAVE al cambiar propiedades
+      color 0.3s = el color tarda 0.3 segundos en cambiar
+      
+      Sin esto, el cambio de color sería INSTANTÁNEO (seco)
+      Con esto, hay un fade suave de 0.3 segundos
+    */
+    transition: color 0.3s;
+    
+    position: relative;             /* Necesario para posicionar el pseudo-elemento ::after */
 }
 
+/* Estado HOVER (mouse encima) y ACTIVE (página actual) */
 .nav a:hover,
 .nav a.active {
-  color: var(--color-primary);
+    color: var(--color-primary);    /* Cambia a rojo */
 }
 
+/* 
+  ::after es un PSEUDO-ELEMENTO
+  Crea un elemento virtual DESPUÉS del contenido del enlace
+  
+  Aquí lo usamos para crear la LÍNEA ROJA debajo del enlace activo
+*/
 .nav a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: var(--color-primary);
-  border-radius: 3px;
+    content: '';                    /* Necesario para que ::after exista */
+    position: absolute;             /* Posicionamiento absoluto relativo al padre */
+    bottom: -5px;                   /* 5px debajo del enlace */
+    left: 0;                        /* Alineado a la izquierda */
+    width: 100%;                    /* Mismo ancho que el enlace */
+    height: 3px;                    /* Grosor de la línea */
+    background-color: var(--color-primary);
+    border-radius: 3px;             /* Bordes redondeados */
 }
 
+/* ==================== BOTÓN DEL CARRITO ==================== */
 .btn-cart {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--color-dark);
-  position: relative;
+    background: none;               /* Sin fondo (transparente) */
+    border: none;                   /* Sin borde */
+    cursor: pointer;                /* Cambia cursor a "mano" al pasar el mouse */
+    font-size: 1.5rem;              /* Ícono grande */
+    display: flex;                  /* Para alinear ícono + contador */
+    align-items: center;            /* Centrado vertical */
+    gap: 5px;                       /* Espacio entre ícono y contador */
+    color: var(--color-dark);
+    position: relative;             /* Para posicionar el contador absoluto */
 }
 
+/* Contador de productos (círculo rojo) */
 .cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: var(--color-primary);
-  color: white;
-  font-size: 0.7rem;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;             /* Posicionamiento absoluto */
+    top: -8px;                      /* 8px arriba del botón */
+    right: -8px;                    /* 8px a la derecha */
+    
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 0.7rem;              /* Texto pequeño */
+    width: 18px;
+    height: 18px;
+    
+    /* 
+      border-radius: 50% crea un CÍRCULO perfecto
+      (cuando width = height, 50% = círculo)
+    */
+    border-radius: 50%;
+    
+    /* Centrar el número dentro del círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Hero Section */
+/* ==================== HERO SECTION ==================== */
+/* 
+  .hero es la sección principal de bienvenida
+  Fondo degradado con los colores de la marca
+*/
 .hero {
-  background: linear-gradient(135deg, #E30A17 0%, #FFCE00 100%);
-  color: white;
-  padding: 100px 0;
-  text-align: center;
+    /* 
+      linear-gradient crea un DEGRADADO
+      135deg = ángulo de 135 grados (diagonal)
+      #E30A17 0% = rojo empieza al 0%
+      #FFCE00 100% = dorado termina al 100%
+    */
+    background: linear-gradient(135deg, #E30A17 0%, #FFCE00 100%);
+    color: white;                   /* Texto blanco para contraste */
+    padding: 100px 0;               /* 100px arriba/abajo, 0 izquierda/derecha */
+    text-align: center;             /* Centra todo el texto */
 }
 
 .hero h2 {
-  font-family: var(--font-main);
-  font-weight: 700;
-  font-size: 3.5rem;
-  margin-bottom: 20px;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 3.5rem;              /* Título MUY grande (56px) */
+    margin-bottom: 20px;
 }
 
 .hero p {
-  font-size: 1.4rem;
-  max-width: 700px;
-  margin: 0 auto 40px;
+    font-size: 1.4rem;              /* Texto grande */
+    max-width: 700px;               /* Ancho máximo para que no sea muy largo de leer */
+    margin: 0 auto 40px;            /* 0 arriba, auto (centrado), 40px abajo */
 }
 
+/* Contenedor de botones del hero */
 .hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+    display: flex;
+    justify-content: center;        /* Centra los botones */
+    gap: 20px;                      /* 20px entre botones */
 }
 
-/* Buttons */
+/* ==================== BOTONES ==================== */
+/* Botón PRIMARIO (rojo, relleno) */
 .btn-primary {
-  background-color: var(--color-primary);
-  color: white;
-  border: none;
-  padding: 14px 32px;
-  font-family: var(--font-main);
-  font-weight: 600;
-  font-size: 1.1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-decoration: none;
-  display: inline-block;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 14px 32px;             /* 14px arriba/abajo, 32px izquierda/derecha */
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 4px;             /* Bordes ligeramente redondeados */
+    cursor: pointer;
+    
+    /* Animación para hover */
+    transition: all 0.3s;           /* "all" = anima TODAS las propiedades que cambien */
+    
+    text-decoration: none;          /* Para cuando es un <a> */
+    display: inline-block;          /* Para que padding y margin funcionen en <a> */
 }
 
+/* Efecto HOVER del botón primario */
 .btn-primary:hover {
-  background-color: #c10815;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: #c10815;      /* Rojo más oscuro */
+    
+    /* 
+      transform: translateY(-2px) MUEVE el botón 2px hacia ARRIBA
+      Da la sensación de que el botón "se eleva"
+    */
+    transform: translateY(-2px);
+    
+    /* Sombra más fuerte para efecto de elevación */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+/* Botón SECUNDARIO (transparente, con borde) */
 .btn-secondary {
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 14px 32px;
-  font-family: var(--font-main);
-  font-weight: 600;
-  font-size: 1.1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-decoration: none;
-  display: inline-block;
+    background-color: transparent;  /* Fondo transparente */
+    color: white;
+    border: 2px solid white;        /* Borde blanco de 2px */
+    padding: 14px 32px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo blanco muy transparente */
+    transform: translateY(-2px);
 }
 
+/* Botón de búsqueda (lupa) */
 .btn-search {
-  background-color: var(--color-primary);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1.2rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .btn-search:hover {
-  background-color: #c10815;
+    background-color: #c10815;
 }
 
-/* Search Section */
+/* ==================== BÚSQUEDA ==================== */
 .search-section {
-  padding: 30px 0;
-  background-color: white;
+    padding: 30px 0;
+    background-color: white;
 }
 
 .search-container {
-  display: flex;
-  max-width: 600px;
-  margin: 0 auto;
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;                 /* Centrado horizontal */
 }
 
+/* Campo de búsqueda */
 .search-container input {
-  flex: 1;
-  padding: 14px 20px;
-  font-size: 1.1rem;
-  border: 2px solid var(--color-border);
-  border-radius: 4px 0 0 4px;
-  outline: none;
+    flex: 1;                        /* Ocupa TODO el espacio disponible */
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    border: 2px solid var(--color-border);
+    border-radius: 4px 0 0 4px;     /* Solo bordes redondeados IZQUIERDOS */
+    outline: none;                  /* Quita el borde azul por defecto al hacer focus */
 }
 
+/* Estado FOCUS (cuando el usuario hace click en el input) */
 .search-container input:focus {
-  border-color: var(--color-primary);
+    border-color: var(--color-primary); /* Borde rojo al escribir */
 }
 
-/* Category Sections */
+/* ==================== SECCIONES DE CATEGORÍAS ==================== */
 .category-section {
-  padding: 80px 0;
+    padding: 80px 0;                /* 80px arriba/abajo para espaciar secciones */
 }
 
 .category-section h2 {
-  font-family: var(--font-main);
-  font-weight: 700;
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 50px;
-  color: var(--color-dark);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--color-dark);
 }
 
+/* ==================== GRILLA DE PRODUCTOS ==================== */
+/* 
+  .products-grid usa CSS GRID
+  Grid es un sistema de diseño 2D (filas Y columnas)
+  
+  DIFERENCIA con Flexbox:
+  - Flexbox: 1D (o fila O columna)
+  - Grid: 2D (filas Y columnas simultáneamente)
+*/
 .products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
+    /* 
+      display: grid activa CSS Grid
+    */
+    display: grid;
+    
+    /* 
+      grid-template-columns define las COLUMNAS
+      repeat(auto-fit, minmax(280px, 1fr)) =
+      
+      - auto-fit: crea TANTAS columnas como quepan
+      - minmax(280px, 1fr): cada columna mide mínimo 280px, máximo 1fr (fracción igual)
+      
+      Esto hace que sea RESPONSIVE AUTOMÁTICAMENTE:
+      - Pantalla grande: 4 columnas
+      - Tablet: 3 columnas
+      - Celular: 1-2 columnas
+      
+      ¡Sin media queries!
+    */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    
+    gap: 30px;                      /* Espacio ENTRE celdas de la grilla */
 }
 
+/* ==================== TARJETA DE PRODUCTO ==================== */
 .product-card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
+    background: white;
+    border-radius: 8px;             /* Bordes redondeados */
+    overflow: hidden;               /* Lo que sobresale se CORTA (importante para border-radius) */
+    
+    /* Sombra suave */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    
+    /* Animación para hover */
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* Efecto HOVER en la tarjeta */
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transform: translateY(-5px);    /* Se eleva 5px */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* Sombra más fuerte */
 }
 
+/* Contenedor de imagen del producto */
 .product-image {
-  width: 100%;
-  height: 200px;
-  background-color: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+    width: 100%;
+    height: 200px;
+    background-color: #f0f0f0;      /* Gris claro mientras carga la imagen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
+/* Imagen del producto */
 .product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    
+    /* 
+      object-fit: cover RECORTA la imagen para llenar el espacio
+      Sin deformarla (mantiene aspect ratio)
+      
+      DIFERENCIA con object-fit: contain:
+      - cover: llena todo, puede recortar
+      - contain: muestra toda la imagen, puede dejar espacios vacíos
+    */
+    object-fit: cover;
 }
 
+/* Información del producto */
 .product-info {
-  padding: 20px;
+    padding: 20px;
 }
 
 .product-info h3 {
-  font-family: var(--font-main);
-  font-weight: 600;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
 }
 
 .product-info p {
-  color: var(--color-gray);
-  font-size: 0.95rem;
-  margin-bottom: 15px;
+    color: var(--color-gray);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
 }
 
+/* Precio del producto */
 .product-price {
-  font-family: var(--font-main);
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: var(--color-primary);
-  margin-bottom: 15px;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1.4rem;              /* Grande para destacar */
+    color: var(--color-primary);    /* Rojo para llamar atención */
+    margin-bottom: 15px;
 }
 
+/* Contenedor de botones de acción */
 .product-actions {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
+/* Botón "Agregar al carrito" */
 .btn-add-to-cart {
-  flex: 1;
-  background-color: var(--color-primary);
-  color: white;
-  border: none;
-  padding: 10px;
-  font-family: var(--font-main);
-  font-weight: 600;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    flex: 1;                        /* Ocupa todo el espacio disponible */
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .btn-add-to-cart:hover {
-  background-color: #c10815;
+    background-color: #c10815;
 }
 
+/* Mensaje de carga */
 .loading-spinner {
-  grid-column: 1 / -1;
-  text-align: center;
-  font-size: 1.2rem;
-  color: var(--color-gray);
+    grid-column: 1 / -1;            /* Ocupa TODAS las columnas (centrado) */
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-gray);
 }
 
-/* Cart Sidebar */
+/* ==================== CARRITO SIDEBAR ==================== */
+/* Panel lateral del carrito */
 .cart-sidebar {
-  position: fixed;
-  top: 0;
-  right: -400px;
-  width: 400px;
-  height: 100vh;
-  background: white;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-  z-index: 2000;
-  transition: right 0.4s ease;
+    position: fixed;                /* Fijo en la pantalla (no se mueve con scroll) */
+    top: 0;
+    right: -400px;                  /* OCULTO a la derecha (fuera de pantalla) */
+    width: 400px;
+    height: 100vh;                  /* 100% del alto de la ventana (viewport height) */
+    background: white;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 2000;                  /* Por encima de todo */
+    
+    /* Animación de deslizamiento */
+    transition: right 0.4s ease;    /* 0.4 segundos con easing (suave al inicio/final) */
 }
 
+/* Clase que se agrega con JavaScript para MOSTRAR el carrito */
 .cart-sidebar.open {
-  right: 0;
+    right: 0;                       /* Se desliza a la vista */
 }
 
 .cart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .btn-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--color-dark);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-dark);
 }
 
+/* Items del carrito */
 .cart-items {
-  padding: 20px;
-  max-height: calc(100vh - 200px);
-  overflow-y: auto;
+    padding: 20px;
+    max-height: calc(100vh - 200px); /* Alto máximo: ventana menos header/footer */
+    overflow-y: auto;               /* Scroll vertical si hay muchos items */
 }
 
 .cart-item {
-  display: flex;
-  gap: 15px;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--color-border);
+    display: flex;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .cart-item:last-child {
-  border-bottom: none;
+    border-bottom: none;            /* Sin borde en el último item */
 }
 
 .cart-item-image {
-  width: 60px;
-  height: 60px;
-  background-color: #f0f0f0;
-  border-radius: 4px;
+    width: 60px;
+    height: 60px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
 }
 
 .cart-item-details h4 {
-  font-size: 1rem;
-  margin-bottom: 5px;
+    font-size: 1rem;
+    margin-bottom: 5px;
 }
 
 .cart-item-price {
-  font-weight: 600;
-  color: var(--color-primary);
+    font-weight: 600;
+    color: var(--color-primary);
 }
 
+/* Controles de cantidad */
 .cart-item-quantity {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .cart-item-quantity button {
-  background: var(--color-border);
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 4px;
-  cursor: pointer;
+    background: var(--color-border);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .cart-item-quantity span {
-  font-weight: 600;
+    font-weight: 600;
 }
 
+/* Footer del carrito */
 .cart-footer {
-  padding: 20px;
-  border-top: 1px solid var(--color-border);
+    padding: 20px;
+    border-top: 1px solid var(--color-border);
 }
 
 .cart-total {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
+/* Botón de checkout */
 .btn-checkout {
-  width: 100%;
-  padding: 14px;
-  font-family: var(--font-main);
-  font-weight: 600;
-  font-size: 1.1rem;
-  background-color: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    width: 100%;                    /* Ancho completo */
+    padding: 14px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.1rem;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
+/* Estado DESHABILITADO */
 .btn-checkout:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+    background-color: #cccccc;      /* Gris */
+    cursor: not-allowed;            /* Cursor de "prohibido" */
 }
 
 .btn-checkout:hover:not(:disabled) {
-  background-color: #c10815;
+    background-color: #c10815;
 }
 
 .empty-cart {
-  text-align: center;
-  color: var(--color-gray);
-  font-style: italic;
+    text-align: center;
+    color: var(--color-gray);
+    font-style: italic;
 }
 
-/* Contact Section */
+/* ==================== CONTACTO ==================== */
 .contact-section {
-  padding: 80px 0;
-  background-color: white;
+    padding: 80px 0;
+    background-color: white;
 }
 
 .contact-section h2 {
-  font-family: var(--font-main);
-  font-weight: 700;
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 50px;
-  color: var(--color-dark);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--color-dark);
 }
 
+/* Grid de 2 columnas para información y formulario */
 .contact-info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columnas iguales */
+    gap: 50px;
 }
 
 .contact-details h3,
 .contact-form h3 {
-  font-family: var(--font-main);
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }
 
 .contact-details p {
-  margin-bottom: 15px;
-  font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
 }
 
+/* Campos del formulario */
 .contact-form input,
 .contact-form textarea {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 15px;
-  border: 2px solid var(--color-border);
-  border-radius: 4px;
-  font-size: 1rem;
-  outline: none;
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--color-primary);
+    border-color: var(--color-primary); /* Borde rojo al escribir */
 }
 
 .contact-form textarea {
-  height: 120px;
-  resize: vertical;
+    height: 120px;
+    resize: vertical;               /* Solo se puede cambiar alto, no ancho */
 }
 
-/* Footer */
+/* ==================== FOOTER ==================== */
 .footer {
-  background-color: var(--color-dark);
-  color: white;
-  padding: 40px 0 20px;
+    background-color: var(--color-dark);
+    color: white;
+    padding: 40px 0 20px;           /* 40px arriba, 0 lados, 20px abajo */
 }
 
 .footer .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;         /* Elementos en columna (uno debajo del otro) */
+    align-items: center;            /* Centrados horizontalmente */
 }
 
 .footer p {
-  margin-bottom: 20px;
-  text-align: center;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .footer-links {
-  display: flex;
-  gap: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 .footer-links a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
 .footer-links a:hover {
-  color: var(--color-secondary);
+    color: var(--color-secondary);  /* Dorado al pasar el mouse */
 }
 
-/* Responsive Design */
+/* ==================== RESPONSIVE DESIGN ==================== */
+/* 
+  @media son CONSULTAS DE MEDIOS
+  Aplican estilos SOLO si se cumple la condición
+  
+  @media (max-width: 900px) =
+  "Si la pantalla mide 900px o menos, aplica estos estilos"
+  
+  Esto es lo que hace que la página funcione en CELULARES
+*/
+
+/* Tablets y pantallas medianas */
 @media (max-width: 900px) {
-  .header .container {
-    flex-direction: column;
-  }
-
-  .nav ul {
-    margin-top: 20px;
-  }
-
-  .nav li {
-    margin: 0 15px;
-  }
-
-  .hero h2 {
-    font-size: 2.5rem;
-  }
-
-  .hero p {
-    font-size: 1.2rem;
-  }
-
-  .contact-info {
-    grid-template-columns: 1fr;
-  }
-
-  .cart-sidebar {
-    width: 320px;
-  }
+    .header .container {
+        flex-direction: column;     /* Elementos en columna (uno debajo del otro) */
+    }
+    
+    .nav ul {
+        margin-top: 20px;
+    }
+    
+    .nav li {
+        margin: 0 15px;             /* Menos espacio entre items */
+    }
+    
+    .hero h2 {
+        font-size: 2.5rem;          /* Título más pequeño */
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr; /* 1 sola columna (info arriba, form abajo) */
+    }
+    
+    .cart-sidebar {
+        width: 320px;               /* Carrito más angosto */
+    }
 }
 
+/* Celulares */
 @media (max-width: 768px) {
-  .hero {
-    padding: 70px 0;
-  }
-
-  .hero h2 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-  }
-
-  .search-container {
-    flex-direction: column;
-  }
-
-  .search-container input {
-    border-radius: 4px;
-  }
-
-  .search-container button {
-    border-radius: 4px;
-    margin-top: 10px;
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cart-sidebar {
-    width: 100%;
-  }
+    .hero {
+        padding: 70px 0;            /* Menos padding */
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    /* Botones en columna (uno debajo del otro) */
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;                /* Ancho completo */
+    }
+    
+    /* Búsqueda en columna */
+    .search-container {
+        flex-direction: column;
+    }
+    
+    .search-container input {
+        border-radius: 4px;         /* Todos los bordes redondeados */
+    }
+    
+    .search-container button {
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+    
+    /* Productos en 1 sola columna */
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Carrito ocupa toda la pantalla */
+    .cart-sidebar {
+        width: 100%;
+    }
 }
 
-/* Utility Classes */
+/* ==================== CLASES DE UTILIDAD ==================== */
+/* 
+  .hidden es una clase de UTILIDAD
+  Se usa con JavaScript para ocultar elementos dinámicamente
+  
+  display: none = el elemento DESAPARECE completamente
+  (no ocupa espacio, es como si no existiera)
+*/
 .hidden {
-  display: none;
+    display: none;
 }
+
+/* 
+  ╔═══════════════════════════════════════════════════════════════════╗
+  ║  RESUMEN DE CSS APRENDIDO                                         ║
+  ╚═══════════════════════════════════════════════════════════════════╝
+  
+  SELECTORES:
+  *                    → Universal (todos los elementos)
+  elemento             → Por etiqueta (ej: button)
+  .clase               → Por clase (ej: .btn-primary)
+  #id                  → Por id (ej: #cartToggle)
+  elemento.clase       → Combinado (ej: div.container)
+  padre > hijo         → Hijos directos
+  :hover               → Pseudo-clase (mouse encima)
+  :focus               → Pseudo-clase (elemento seleccionado)
+  :disabled            → Pseudo-clase (deshabilitado)
+  ::after              → Pseudo-elemento (después del contenido)
+  ::before             → Pseudo-elemento (antes del contenido)
+  
+  PROPIEDADES IMPORTANTES:
+  display              → Tipo de layout (flex, grid, block, inline, none)
+  position             → Posicionamiento (static, relative, absolute, fixed, sticky)
+  width / height       → Dimensiones
+  margin               → Espacio EXTERNO (fuera del elemento)
+  padding              → Espacio INTERNO (dentro del elemento)
+  border               → Borde
+  border-radius        → Bordes redondeados
+  background-color     → Color de fondo
+  color                → Color de texto
+  font-family          → Tipo de letra
+  font-size            → Tamaño de letra
+  font-weight          → Grosor de letra (100-900)
+  text-align           → Alineación de texto
+  text-decoration      → Decoración de texto (none = sin subrayado)
+  box-shadow           → Sombra
+  transition           → Animación suave
+  transform            → Transformación (translate, rotate, scale)
+  z-index              → Profundidad (qué elemento está encima)
+  opacity              → Transparencia (0-1)
+  
+  FLEXBOX (display: flex):
+  justify-content      → Alineación horizontal (flex-start, center, flex-end, space-between)
+  align-items          → Alineación vertical (stretch, center, flex-start, flex-end)
+  flex-direction       → Dirección (row, column)
+  gap                  → Espacio entre elementos
+  flex                 → Crecimiento (flex: 1 = ocupa espacio disponible)
+  
+  GRID (display: grid):
+  grid-template-columns → Definición de columnas
+  grid-template-rows    → Definición de filas
+  gap                   → Espacio entre celdas
+  grid-column           → Posición en columnas
+  
+  VARIABLES CSS:
+  --nombre: valor;     → Definición (en :root)
+  var(--nombre)        → Uso
+  
+  MEDIA QUERIES:
+  @media (max-width: Xpx) → Estilos para pantallas <= X px
+  
+  ════════════════════════════════════════════════════════════════════
+  EJERCICIOS SUGERIDOS:
+  1. Abre index.html en el navegador
+  2. Abre DevTools (F12) → pestaña "Elements"
+  3. Haz click en un elemento → verás sus estilos a la derecha
+  4. Desmarca/marca propiedades para ver qué pasa
+  5. Cambia valores en vivo (ej: color, tamaño)
+  6. Prueba redimensionar la ventana para ver responsive design
+  ════════════════════════════════════════════════════════════════════
+*/
