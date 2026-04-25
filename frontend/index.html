@@ -1,47 +1,249 @@
 <!DOCTYPE html>
+<!-- 
+  ╔═══════════════════════════════════════════════════════════════════╗
+  ║  LECCIÓN HTML - ESTRUCTURA DE UNA PÁGINA WEB                      ║
+  ║  Proyecto: Reparadora y Ortopedia Alemana                         ║
+  ╚═══════════════════════════════════════════════════════════════════╝
+  
+  HTML (HyperText Markup Language) NO es programación. Es MARKUP (marcado).
+  Define la ESTRUCTURA y CONTENIDO de la página, como los planos de una casa.
+  
+  ANALOGÍA CON C#:
+  - HTML es como la definición de una clase (estructura)
+  - CSS es como las propiedades visuales de un control en WinForms
+  - JavaScript es como el código que da lógica y comportamiento
+-->
+
+<!-- 
+  <!DOCTYPE html> le dice al navegador: "Esto es HTML5"
+  Es como el "using System;" al inicio de un archivo C#
+  Sin esto, el navegador podría usar un modo de compatibilidad antiguo
+-->
+<!DOCTYPE html>
+
+<!-- 
+  <html> es la RAÍZ de todo el documento
+  lang="es" indica que el contenido está en español
+  Esto ayuda a:
+  - Motores de búsqueda (SEO)
+  - Lectores de pantalla para ciegos
+  - Traductores automáticos
+-->
 <html lang="es">
+
+<!-- 
+  <head> contiene CONFIGURACIÓN de la página
+  TODO lo que está aquí NO se ve directamente en la página
+  Es como la sección "Properties" de un proyecto en Visual Studio
+  
+  Elementos importantes dentro de <head>:
+  - meta: configuración técnica
+  - title: título en la pestaña del navegador
+  - link: conexión con archivos externos (CSS, fuentes, iconos)
+-->
 <head>
+    <!-- 
+      <meta charset="UTF-8"> permite usar ñ, tildes, emojis, etc.
+      UTF-8 es el estándar mundial de codificación de caracteres
+      Sin esto, podrías ver "Ã±" en lugar de "ñ"
+    -->
     <meta charset="UTF-8">
+    
+    <!-- 
+      <meta name="viewport"> hace que la página funcione en CELULARES
+      width=device-width: el ancho de la página = el ancho de la pantalla
+      initial-scale=1.0: zoom inicial al 100%
+      
+      Sin esto, el celular mostraría la página como si fuera de escritorio
+      y tendrías que hacer zoom con los dedos para leer
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 
+      <title> es el texto que aparece en la PESTAÑA del navegador
+      También es lo que Google muestra como título en los resultados
+      IMPORTANTE para SEO (Search Engine Optimization)
+    -->
     <title>Reparadora y Ortopedia Alemana | Tienda Online</title>
+    
+    <!-- 
+      <meta name="description"> es la descripción que aparece en Google
+      Debajo del título en los resultados de búsqueda
+      Máximo recomendado: 155-160 caracteres
+    -->
     <meta name="description" content="Compra artículos para calzado y productos ortopédicos de alta calidad en línea. Envíos a todo Chile.">
+    
+    <!-- 
+      <link rel="stylesheet"> conecta el archivo CSS
+      href="style.css" = el archivo está en la misma carpeta
+      
+      ANALOGÍA CON C#:
+      Es como hacer "using MiProyecto.Styles;" pero para CSS
+      Sin esto, la página se vería sin estilo (solo texto plano)
+    -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- 
+      <link rel="preconnect"> y <link href="fonts.googleapis.com">
+      Cargan fuentes de Google Fonts (tipografías personalizadas)
+      
+      ¿Por qué 2 líneas?
+      1. preconnect: "Oye navegador, prepárate para conectar a fonts.googleapis.com"
+      2. href: "Ahora sí, carga estas fuentes específicas"
+      
+      Esto hace que la carga sea más rápida (pre-conexión)
+    -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
+<!-- 
+  <body> contiene TODO lo que se VE en la página
+  Si <head> es la configuración, <body> es el contenido visible
+  
+  ESTRUCTURA SEMÁNTICA (HTML5):
+  En vez de usar solo <div> para todo, HTML5 introdujo etiquetas con SIGNIFICADO:
+  - <header>: encabezado
+  - <nav>: navegación
+  - <main>: contenido principal
+  - <section>: sección temática
+  - <article>: contenido independiente (como un post de blog)
+  - <aside>: contenido relacionado (sidebar, widgets)
+  - <footer>: pie de página
+  
+  ¿Por qué importa?
+  - Mejor SEO (Google entiende mejor tu contenido)
+  - Mejor accesibilidad (lectores de pantalla navegan mejor)
+  - Código más legible para otros desarrolladores
+-->
 <body>
-    <!-- Header -->
+    
+    <!-- ==================== HEADER (ENCABEZADO) ==================== -->
+    <!-- 
+      <header> es el encabezado de la página
+      Usualmente contiene: logo, menú de navegación, botones de acción
+      
+      class="header" permite aplicar estilos CSS específicos
+      ANALOGÍA CON C#: class es como ponerle un "Tag" a un control
+      En CSS: .header { ... } aplica estilos a todo lo que tenga class="header"
+    -->
     <header class="header">
+        
+        <!-- 
+          <div> es un contenedor GENÉRICO (no tiene significado semántico)
+          Es como un "Panel" en WinForms: solo agrupa otros elementos
+          
+          class="container" es una clase común para centrar contenido
+          y limitar el ancho máximo (ver style.css)
+        -->
         <div class="container">
+            
+            <!-- Logo y nombre del negocio -->
             <div class="logo">
+                <!-- 
+                  <h1> es el título MÁS IMPORTANTE de la página
+                  Solo debe haber UN <h1> por página (mejor SEO)
+                  Hay también <h2>, <h3>, <h4>, <h5>, <h6> (menos importantes)
+                  
+                  ANALOGÍA: Es como el "Título Principal" de un documento Word
+                -->
                 <h1>Reparadora y Ortopedia Alemana</h1>
+                
+                <!-- 
+                  <p> es un párrafo de texto
+                  class="tagline" le da un estilo específico (texto más pequeño, gris)
+                -->
                 <p class="tagline">Calidad Alemana para tu Bienestar</p>
             </div>
+            
+            <!-- ==================== NAVEGACIÓN ==================== -->
+            <!-- 
+              <nav> es MENÚ DE NAVEGACIÓN (semántico)
+              Indica que los enlaces dentro son para navegar por el sitio
+              
+              Google usa esto para entender la estructura de tu sitio
+            -->
             <nav class="nav">
+                <!-- 
+                  <ul> es una lista SIN ORDEN (Unordered List)
+                  Muestra elementos con viñetas (puntos) por defecto
+                  
+                  Hay también <ol> (Ordered List) que usa números (1, 2, 3...)
+                -->
                 <ul>
-                    <li><a href="#home" class="active">Inicio</a></li>
+                    <!-- 
+                      <li> es un ITEM de la lista (List Item)
+                      Cada <li> es un elemento del menú
+                    -->
+                    <li>
+                        <!-- 
+                          <a> es un ENLACE (Anchor)
+                          href="#home" = al hacer click, va al elemento con id="home"
+                          El # indica que es un enlace INTERNO (misma página)
+                          
+                          class="active" indica qué página/sección estás viendo
+                          (se usa para resaltar el enlace actual)
+                        -->
+                        <a href="#home" class="active">Inicio</a>
+                    </li>
                     <li><a href="#calzado">Calzado</a></li>
                     <li><a href="#ortopedia">Ortopedia</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
+            
+            <!-- Botones y acciones del header (carrito de compras) -->
             <div class="header-actions">
+                <!-- 
+                  <button> es un botón CLICKEABLE
+                  id="cartToggle" = identificador ÚNICO (solo uno por página)
+                  
+                  DIFERENCIA entre class e id:
+                  - class: puede repetirse (múltiples elementos con la misma clase)
+                  - id: único (solo UN elemento con ese id en toda la página)
+                  
+                  ANALOGÍA CON C#:
+                  - class = como una categoría o tag
+                  - id = como el nombre de una variable (debe ser único)
+                -->
                 <button id="cartToggle" class="btn-cart">
+                    <!-- Emoji como ícono (más simple que cargar una imagen) -->
                     <span class="cart-icon">🛒</span>
+                    <!-- Contador de productos en el carrito (se actualiza con JS) -->
                     <span class="cart-count">0</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- ==================== HERO SECTION ==================== -->
+    <!-- 
+      <section> es una SECCIÓN TEMÁTICA de la página
+      Agrupa contenido relacionado bajo un mismo tema
+      
+      id="home" permite que los enlaces del menú apunten aquí
+      Cuando haces click en "Inicio", la página hace scroll hasta este id
+    -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
+                <!-- 
+                  <h2> es un subtítulo (menos importante que <h1>)
+                  Ideal para títulos de secciones
+                -->
                 <h2>Bienvenido a la Tienda Online</h2>
+                
+                <!-- Párrafo descriptivo -->
                 <p>Artículos de calzado y soluciones ortopédicas de máxima calidad, diseñadas para tu comodidad y bienestar.</p>
+                
+                <!-- Botones de acción -->
                 <div class="hero-buttons">
+                    <!-- 
+                      <a> puede usarse como BOTÓN cuando tiene href
+                      class="btn-primary" = estilo de botón principal (rojo)
+                      class="btn-secondary" = estilo de botón secundario (borde blanco)
+                    -->
                     <a href="#calzado" class="btn-primary">Ver Calzado</a>
                     <a href="#ortopedia" class="btn-secondary">Ver Ortopedia</a>
                 </div>
@@ -49,71 +251,141 @@
         </div>
     </section>
 
-    <!-- Product Search -->
+    <!-- ==================== BÚSQUEDA DE PRODUCTOS ==================== -->
     <section class="search-section">
         <div class="container">
             <div class="search-container">
+                <!-- 
+                  <input> es un CAMPO DE ENTRADA (formulario)
+                  type="text" = campo de texto simple
+                  
+                  Otros tipos importantes:
+                  - type="email" = valida que sea email
+                  - type="password" = oculta caracteres
+                  - type="number" = solo números
+                  - type="checkbox" = casilla de verificación
+                  - type="radio" = opción única
+                  
+                  placeholder = texto de ayuda que desaparece al escribir
+                  id="searchInput" = para que JavaScript pueda leer lo que escribes
+                -->
                 <input type="text" id="searchInput" placeholder="Buscar productos...">
+                
+                <!-- Botón de búsqueda con emoji de lupa -->
                 <button id="searchButton" class="btn-search">🔍</button>
             </div>
         </div>
     </section>
 
-    <!-- Categories -->
+    <!-- ==================== SECCIÓN CALZADO ==================== -->
+    <!-- 
+      id="calzado" permite que el enlace del menú apunte aquí
+      La página hará scroll hasta esta sección cuando hagas click en "Calzado"
+    -->
     <section id="calzado" class="category-section">
         <div class="container">
             <h2>Artículos para Calzado</h2>
+            
+            <!-- 
+              <div id="calzadoProducts"> es un CONTENEDOR VACÍO
+              JavaScript va a INSERTAR los productos aquí dinámicamente
+              
+              Esto se llama "renderizado dinámico"
+              En vez de escribir cada producto a mano en HTML,
+              los cargamos desde un archivo JSON (products.json)
+              
+              ANALOGÍA CON C#:
+              Es como tener un Panel vacío y llenarlo con un loop:
+              foreach(var producto in productos) { panel.Controls.Add(...) }
+            -->
             <div id="calzadoProducts" class="products-grid">
-                <!-- Products will be loaded here by JavaScript -->
+                <!-- Mensaje temporal mientras carga JavaScript -->
                 <div class="loading-spinner">Cargando productos...</div>
             </div>
         </div>
     </section>
 
+    <!-- ==================== SECCIÓN ORTOPEDIA ==================== -->
     <section id="ortopedia" class="category-section">
         <div class="container">
             <h2>Productos Ortopédicos</h2>
+            <!-- Mismo concepto que calzado, pero para otra categoría -->
             <div id="ortopediaProducts" class="products-grid">
-                <!-- Products will be loaded here by JavaScript -->
                 <div class="loading-spinner">Cargando productos...</div>
             </div>
         </div>
     </section>
 
-    <!-- Cart Sidebar -->
+    <!-- ==================== CARRITO (SIDEBAR) ==================== -->
+    <!-- 
+      Este es el panel lateral que se desliza cuando haces click en el carrito
+      NO es una sección visible inicialmente - está "oculto" a la derecha
+      
+      JavaScript lo muestra/oculta agregando/removiendo class="open"
+    -->
     <div id="cartSidebar" class="cart-sidebar">
         <div class="cart-header">
             <h3>Tu Carrito</h3>
+            <!-- Botón para cerrar el carrito (X) -->
             <button id="cartClose" class="btn-close">✕</button>
         </div>
+        
+        <!-- Aquí JavaScript insertará los productos del carrito -->
         <div id="cartItems" class="cart-items">
             <p class="empty-cart">Tu carrito está vacío.</p>
         </div>
+        
         <div class="cart-footer">
             <div class="cart-total">
                 <strong>Total:</strong> <span id="cartTotal">$0</span>
             </div>
+            <!-- Botón deshabilitado hasta que haya productos -->
             <button id="checkoutButton" class="btn-checkout" disabled>Finalizar Compra</button>
         </div>
     </div>
 
-    <!-- Contact Section -->
+    <!-- ==================== CONTACTO ==================== -->
     <section id="contacto" class="contact-section">
         <div class="container">
             <h2>Contáctanos</h2>
             <div class="contact-info">
+                <!-- Información de contacto (texto estático) -->
                 <div class="contact-details">
                     <h3>Información de Contacto</h3>
                     <p>📞 Teléfono: +56 9 1234 5678</p>
                     <p>📍 Dirección: Calle Falsa 123, Santiago</p>
                     <p>💬 WhatsApp: +56 9 1234 5678</p>
                 </div>
+                
+                <!-- ==================== FORMULARIO ==================== -->
+                <!-- 
+                  <form> envuelve campos de entrada
+                  Cuando el usuario hace submit, los datos se envían al servidor
+                  
+                  En este caso, JavaScript interceptará el submit
+                  y hará algo personalizado (como enviar un email)
+                -->
                 <div class="contact-form">
                     <h3>Envíanos un Mensaje</h3>
                     <form id="contactForm">
+                        <!-- 
+                          required = el campo es OBLIGATORIO
+                          El navegador no dejará enviar el formulario si está vacío
+                          (validación automática sin JavaScript)
+                        -->
                         <input type="text" placeholder="Nombre completo" required>
                         <input type="email" placeholder="Email" required>
+                        
+                        <!-- 
+                          <textarea> es un campo de texto MULTILÍNEA
+                          rows="4" = altura inicial de 4 líneas
+                        -->
                         <textarea placeholder="Mensaje" rows="4" required></textarea>
+                        
+                        <!-- 
+                          type="submit" = botón que ENVÍA el formulario
+                          Cuando se hace click, dispara el evento "submit" del form
+                        -->
                         <button type="submit" class="btn-primary">Enviar Mensaje</button>
                     </form>
                 </div>
@@ -121,11 +393,22 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ==================== FOOTER (PIE DE PÁGINA) ==================== -->
+    <!-- 
+      <footer> es el pie de página (semántico)
+      Usualmente contiene: copyright, enlaces legales, redes sociales
+    -->
     <footer class="footer">
         <div class="container">
+            <!-- 
+              &copy; es una ENTIDAD HTML para el símbolo ©
+              Hay muchas otras: &nbsp; (espacio), &lt; (<), &gt; (>), &amp; (&)
+            -->
             <p>&copy; 2026 Reparadora y Ortopedia Alemana. Todos los derechos reservados.</p>
+            
+            <!-- Enlaces legales -->
             <div class="footer-links">
+                <!-- href="#" = enlace vacío (no va a ningún lado) -->
                 <a href="#">Términos y condiciones</a>
                 <a href="#">Política de privacidad</a>
                 <a href="#">Aviso legal</a>
@@ -133,7 +416,82 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <!-- 
+      <script src="app.js"> carga el archivo JavaScript
+      Va AL FINAL del <body> para que:
+      1. El HTML cargue primero (la página se ve rápido)
+      2. JavaScript pueda encontrar todos los elementos del DOM
+      
+      ANALOGÍA CON C#:
+      Es como el "código detrás" de un formulario WinForms
+      El HTML es el diseño del formulario, JS es la lógica
+    -->
     <script src="app.js"></script>
 </body>
 </html>
+
+<!-- 
+  ╔═══════════════════════════════════════════════════════════════════╗
+  ║  RESUMEN DE ETIQUETAS HTML APRENDIDAS                             ║
+  ╚═══════════════════════════════════════════════════════════════════╝
+  
+  ESTRUCTURA BÁSICA:
+  <!DOCTYPE html>      → Define versión HTML5
+  <html>               → Raíz del documento
+  <head>               → Configuración (no visible)
+  <body>               → Contenido visible
+  
+  METADATOS:
+  <meta>               → Configuración técnica (charset, viewport)
+  <title>              → Título en la pestaña
+  <link>               → Conexión a archivos externos (CSS, fuentes)
+  
+  CONTENIDO SEMÁNTICO:
+  <header>             → Encabezado
+  <nav>                → Navegación
+  <main>               → Contenido principal
+  <section>            → Sección temática
+  <footer>             → Pie de página
+  
+  TEXTO:
+  <h1>-<h6>            → Títulos (h1 = más importante)
+  <p>                  → Párrafo
+  
+  CONTENEDORES:
+  <div>                → Contenedor genérico (sin significado)
+  
+  LISTAS:
+  <ul>                 → Lista sin orden (viñetas)
+  <ol>                 → Lista ordenada (números)
+  <li>                 → Item de lista
+  
+  ENLACES Y MEDIOS:
+  <a>                  → Enlace (link)
+  <img>                → Imagen
+  
+  FORMULARIOS:
+  <form>               → Formulario
+  <input>              → Campo de entrada
+  <textarea>           → Campo multilínea
+  <button>             → Botón
+  
+  ATRIBUTOS IMPORTANTES:
+  class=""             → Clase para CSS (puede repetirse)
+  id=""                → Identificador único (solo uno por página)
+  href=""              → URL de destino (para enlaces)
+  src=""               → URL de archivo (para imágenes, scripts)
+  type=""              → Tipo de input (text, email, password, etc.)
+  placeholder=""       → Texto de ayuda
+  required             → Campo obligatorio
+  
+  ════════════════════════════════════════════════════════════════════
+  EJERCICIOS SUGERIDOS:
+  1. Abre index.html en tu navegador (doble click)
+  2. Presiona F12 para abrir DevTools
+  3. Ve a la pestaña "Elements" y explora el árbol HTML
+  4. Pasa el mouse sobre los elementos para verlos resaltados
+  5. Haz doble click en algún texto y modifícalo (cambio temporal)
+  6. Intenta agregar un nuevo producto manualmente en el HTML
+  ════════════════════════════════════════════════════════════════════
+-->
